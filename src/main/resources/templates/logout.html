@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" xmlns:tiles="http://www.thymeleaf.org">
+
+<head>
+	<title>Logout</title>
+</head>
+
+<body>
+	<h1>Bạn chắc chắn muốn đăng xuất?</h1>
+	<table>
+		<tr>
+			<td>
+				<form th:action="logout" method="post">
+					<input type="submit" value="Đăng xuất">
+				</form>
+			</td>
+			<td>
+				<form th:action="@{/}" method="get">
+					<input type="submit" value="Không">
+				</form>
+			</td>
+		</tr>
+	</table>
+</body>
+
+</html>

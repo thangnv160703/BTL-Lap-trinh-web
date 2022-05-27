@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Homepage</title>
+</head>
+
+<body>
+	<h1>Welcome <span th:if="${account}" th:text="${account.username}"></span>!</h1>
+	<table align="center">
+		<tr>
+			<!-- <td><button><a th:href="@{/login}" th:text="'Đăng nhập'"></a></button></td> -->
+			<td><button><a th:href="@{/account}" th:text="'Tài khoản'"></a></button></td>
+
+			<span th:if="${account}" th:switch="${account.roles}">
+				<span th:case="ROLE_USER">
+					<td><button><a th:href="@{/booking/list}" th:text="'Danh sách đặt phòng'"></a></button></td>
+					<td><button><a th:href="@{/room}" th:text="'Xem danh sách phòng'"></a></button></td>
+				</span>
+				<span th:case="ROLE_ADMIN">
+					<td><button><a th:href="@{/account/list}" th:text="'Quản lý tài khoản'"></a></button></td>
+				</span>
+				<span th:case="ROLE_MANAGER">
+					<td><button><a th:href="@{/manage/room}" th:text="'Quản lý phòng'"></a></button></td>
+					<!-- <td><button><a th:href="@{/manage/booking}" th:text="'Yêu cầu đặt phòng'"></a></button></td> -->
+				</span>
+			</span>
+			<span th:unless="${account}">
+				<td><button><a th:href="@{/room}" th:text="'Xem danh sách phòng'"></a></button></td>
+			</span>
+		</tr>
+	</table>
+</body>
+
+</html>

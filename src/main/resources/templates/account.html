@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Tài khoản</title>
+</head>
+
+<body>
+	<div th:if="${account}">
+		<h1>Thông tin tài khoản</h1>
+
+		<table>
+			<tr>
+				<td th:text="'Username:'"></td>
+				<td th:text="${account.username}"></td>
+			</tr>
+			
+			<tr>
+				<td th:text="'Họ tên:'"></td>
+				<td th:text="${account.user.fullname}"></td>
+			</tr>
+			
+			<tr>
+				<td th:text="'Vai trò:'"></td>
+				<td th:switch="${account.roles}">
+					<span th:case="'ROLE_ADMIN'" th:text="'Admin'"></span>
+					<span th:case="'ROLE_MANAGER'" th:text="'Quản lý'"></span>
+					<span th:case="*" th:text="'Khách hàng'"></span>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<span><button><a th:href="@{logout}" th:text="'Đăng xuất'"></a></button></span>
+				</td>
+				<td>
+					<button><span><a th:href="@{/}" th:text="'Trang chủ'"></a></span></button>
+				</td>
+			</tr>
+		</table>
+
+	</div>
+
+	<div th:unless="${account}">
+		<h1>Chưa đăng nhập.</h1>
+		<button><a th:href="@{/login}" th:text="'Đăng nhập'"></a></button>
+		<button><span><a th:href="@{/}" th:text="'Trang chủ'"></a></span></button>
+	</div>
+
+
+</body>
+
+</html>
